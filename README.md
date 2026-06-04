@@ -1,6 +1,10 @@
 # EngCalc Pro 
 
-> A polished, full-stack engineering calculator web application built with Node.js, Express, and Vanilla JavaScript. Designed as a portfolio/resume project for engineering students.
+ EngCalc Pro is an engineering calculator web application that I built using HTML, CSS, JavaScript, Node.js,and Express.
+ The idea behind this project was to create a single platform where users can perform basic calculations,use scientific functions, convert units, solve   equations,and keep track of previous calculations.
+
+While building this project, I learned how frontend and backend applications communicate through APIs, how to manage calculation history, and how to create a user responsive user interface that works across different screen sizes.
+
 
 ![Screenshot](https://img.shields.io/badge/status-production--ready-brightgreen)
 ![Node](https://img.shields.io/badge/Node.js-18%2B-green)
