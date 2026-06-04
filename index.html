@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EngCalc Pro — Engineering Calculator</title>
+
+  <!-- Google Fonts: DM Mono + Syne -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ═══════════════════════════  HEADER  ═══════════════════════════ -->
+  <header class="app-header">
+    <div class="header-left">
+      <span class="logo-icon">⚙</span>
+      <div>
+        <h1 class="app-title">EngCalc Pro</h1>
+        <p class="app-subtitle">Engineering Calculator Suite</p>
+      </div>
+    </div>
+    <div class="header-right">
+      <button id="themeToggle" class="icon-btn" title="Toggle dark/light mode" aria-label="Toggle theme">
+        <span class="theme-icon">☀</span>
+      </button>
+      <button id="aboutBtn" class="icon-btn" title="About this project" aria-label="About">
+        <span>ℹ</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ═══════════════════════════  NAV TABS  ════════════════════════ -->
+  <nav class="tab-nav" role="tablist" aria-label="Calculator modes">
+    <button class="tab-btn active" data-tab="basic"      role="tab" aria-selected="true">
+      <span class="tab-icon">⊞</span><span class="tab-label">Basic</span>
+    </button>
+    <button class="tab-btn" data-tab="scientific"        role="tab" aria-selected="false">
+      <span class="tab-icon">∫</span><span class="tab-label">Scientific</span>
+    </button>
+    <button class="tab-btn" data-tab="converter"         role="tab" aria-selected="false">
+      <span class="tab-icon">⇌</span><span class="tab-label">Converter</span>
+    </button>
+    <button class="tab-btn" data-tab="solver"            role="tab" aria-selected="false">
+      <span class="tab-icon">χ</span><span class="tab-label">Solver</span>
+    </button>
+    <button class="tab-btn" data-tab="history"           role="tab" aria-selected="false">
+      <span class="tab-icon">◷</span><span class="tab-label">History</span>
+    </button>
+  </nav>
+
+  <!-- ═══════════════════════════  MAIN CONTENT  ═══════════════════ -->
+  <main class="app-main">
+
+    <!-- ─────────────── 1. BASIC CALCULATOR ─────────────── -->
+    <section id="tab-basic" class="tab-panel active" role="tabpanel">
+      <div class="calc-card">
+        <div class="display-area">
+          <div id="basicExpression" class="expression-line" aria-live="polite"></div>
+          <div id="basicDisplay" class="main-display" aria-live="assertive">0</div>
+          <div class="display-actions">
+            <button class="tiny-btn" id="copyBasic" title="Copy result">⎘ Copy</button>
+          </div>
+        </div>
+
+        <div class="keypad">
+          <!-- Row 1 -->
+          <button class="key key-fn key-wide2" data-action="clear">AC</button>
+          <button class="key key-fn" data-action="backspace">⌫</button>
+          <button class="key key-op" data-action="operator" data-value="÷">÷</button>
+          <!-- Row 2 -->
+          <button class="key key-num" data-action="digit" data-value="7">7</button>
+          <button class="key key-num" data-action="digit" data-value="8">8</button>
+          <button class="key key-num" data-action="digit" data-value="9">9</button>
+          <button class="key key-op" data-action="operator" data-value="×">×</button>
+          <!-- Row 3 -->
+          <button class="key key-num" data-action="digit" data-value="4">4</button>
+          <button class="key key-num" data-action="digit" data-value="5">5</button>
+          <button class="key key-num" data-action="digit" data-value="6">6</button>
+          <button class="key key-op" data-action="operator" data-value="−">−</button>
+          <!-- Row 4 -->
+          <button class="key key-num" data-action="digit" data-value="1">1</button>
+          <button class="key key-num" data-action="digit" data-value="2">2</button>
+          <button class="key key-num" data-action="digit" data-value="3">3</button>
+          <button class="key key-op" data-action="operator" data-value="+">+</button>
+          <!-- Row 5 -->
+          <button class="key key-num key-wide2" data-action="digit" data-value="0">0</button>
+          <button class="key key-num" data-action="decimal">.</button>
+          <button class="key key-eq" data-action="equals">=</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─────────────── 2. SCIENTIFIC CALCULATOR ─────────────── -->
+    <section id="tab-scientific" class="tab-panel" role="tabpanel" hidden>
+      <div class="calc-card">
+        <div class="display-area">
+          <div class="sci-toggle-row">
+            <span class="toggle-label">Mode:</span>
+            <button class="toggle-pill active" id="degBtn" data-mode="deg">DEG</button>
+            <button class="toggle-pill" id="radBtn" data-mode="rad">RAD</button>
+          </div>
+          <div id="sciExpression" class="expression-line" aria-live="polite"></div>
+          <div id="sciDisplay" class="main-display" aria-live="assertive">0</div>
+          <div class="display-actions">
+            <button class="tiny-btn" id="copySci" title="Copy result">⎘ Copy</button>
+          </div>
+        </div>
+
+        <div class="keypad sci-keypad">
+          <!-- Row 1: functions -->
+          <button class="key key-fn" data-sci="sin">sin</button>
+          <button class="key key-fn" data-sci="cos">cos</button>
+          <button class="key key-fn" data-sci="tan">tan</button>
+          <button class="key key-fn" data-sci="log">log</button>
+          <button class="key key-fn" data-sci="ln">ln</button>
+          <!-- Row 2: functions -->
+          <button class="key key-fn" data-sci="sqrt">√</button>
+          <button class="key key-fn" data-sci="pow">xʸ</button>
+          <button class="key key-fn" data-sci="fact">n!</button>
+          <button class="key key-fn" data-sci="pi">π</button>
+          <button class="key key-fn" data-sci="e">e</button>
+          <!-- Row 3: control -->
+          <button class="key key-fn key-wide2" data-sci-action="clear">AC</button>
+          <button class="key key-fn" data-sci-action="backspace">⌫</button>
+          <button class="key key-op" data-sci-op="÷">÷</button>
+          <!-- Row 4 -->
+          <button class="key key-num" data-sci-digit="7">7</button>
+          <button class="key key-num" data-sci-digit="8">8</button>
+          <button class="key key-num" data-sci-digit="9">9</button>
+          <button class="key key-op" data-sci-op="×">×</button>
+          <!-- Row 5 -->
+          <button class="key key-num" data-sci-digit="4">4</button>
+          <button class="key key-num" data-sci-digit="5">5</button>
+          <button class="key key-num" data-sci-digit="6">6</button>
+          <button class="key key-op" data-sci-op="−">−</button>
+          <!-- Row 6 -->
+          <button class="key key-num" data-sci-digit="1">1</button>
+          <button class="key key-num" data-sci-digit="2">2</button>
+          <button class="key key-num" data-sci-digit="3">3</button>
+          <button class="key key-op" data-sci-op="+">+</button>
+          <!-- Row 7 -->
+          <button class="key key-num key-wide2" data-sci-digit="0">0</button>
+          <button class="key key-num" data-sci-decimal>.</button>
+          <button class="key key-eq" data-sci-action="equals">=</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─────────────── 3. UNIT CONVERTER ─────────────── -->
+    <section id="tab-converter" class="tab-panel" role="tabpanel" hidden>
+      <div class="converter-card">
+        <h2 class="section-title">Unit Converter</h2>
+
+        <div class="converter-category-row">
+          <label for="convCategory" class="form-label">Category</label>
+          <select id="convCategory" class="form-select">
+            <option value="length">📏 Length</option>
+            <option value="mass">⚖ Mass</option>
+            <option value="temperature">🌡 Temperature</option>
+            <option value="pressure">💨 Pressure</option>
+            <option value="energy">⚡ Energy</option>
+            <option value="power">🔋 Power</option>
+          </select>
+        </div>
+
+        <div class="converter-grid">
+          <div class="conv-group">
+            <label for="convFromVal" class="form-label">From</label>
+            <input type="number" id="convFromVal" class="form-input" placeholder="Enter value" value="1" />
+            <select id="convFromUnit" class="form-select mt-sm"></select>
+          </div>
+          <div class="conv-arrow">⇌</div>
+          <div class="conv-group">
+            <label for="convToVal" class="form-label">To</label>
+            <input type="number" id="convToVal" class="form-input" placeholder="Result" readonly />
+            <select id="convToUnit" class="form-select mt-sm"></select>
+          </div>
+        </div>
+
+        <div class="conv-result-row">
+          <div id="convFormula" class="formula-badge"></div>
+          <button class="tiny-btn" id="copyConv">⎘ Copy Result</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─────────────── 4. EQUATION SOLVER ─────────────── -->
+    <section id="tab-solver" class="tab-panel" role="tabpanel" hidden>
+      <div class="solver-card">
+        <h2 class="section-title">Equation Solver</h2>
+
+        <div class="solver-type-row">
+          <button class="toggle-pill active" id="linearBtn" data-eq="linear">Linear  ax + b = c</button>
+          <button class="toggle-pill" id="quadBtn" data-eq="quadratic">Quadratic  ax² + bx + c = 0</button>
+        </div>
+
+        <!-- Linear inputs -->
+        <div id="linearInputs" class="solver-inputs">
+          <div class="coeff-row">
+            <div class="coeff-group">
+              <label class="form-label">a (coefficient)</label>
+              <input type="number" id="linA" class="form-input" placeholder="a" value="2" />
+            </div>
+            <div class="coeff-group">
+              <label class="form-label">b (constant)</label>
+              <input type="number" id="linB" class="form-input" placeholder="b" value="3" />
+            </div>
+            <div class="coeff-group">
+              <label class="form-label">c (right side)</label>
+              <input type="number" id="linC" class="form-input" placeholder="c" value="11" />
+            </div>
+          </div>
+          <p class="eq-preview" id="linearPreview">Equation: 2x + 3 = 11</p>
+        </div>
+
+        <!-- Quadratic inputs -->
+        <div id="quadInputs" class="solver-inputs" hidden>
+          <div class="coeff-row">
+            <div class="coeff-group">
+              <label class="form-label">a</label>
+              <input type="number" id="quadA" class="form-input" placeholder="a" value="1" />
+            </div>
+            <div class="coeff-group">
+              <label class="form-label">b</label>
+              <input type="number" id="quadB" class="form-input" placeholder="b" value="-3" />
+            </div>
+            <div class="coeff-group">
+              <label class="form-label">c</label>
+              <input type="number" id="quadC" class="form-input" placeholder="c" value="2" />
+            </div>
+          </div>
+          <p class="eq-preview" id="quadPreview">Equation: x² − 3x + 2 = 0</p>
+        </div>
+
+        <button class="solve-btn" id="solveBtn">Solve Equation</button>
+
+        <div id="solverResult" class="solver-result" hidden>
+          <h3 class="steps-title">Step-by-Step Solution</h3>
+          <ol id="stepsList" class="steps-list"></ol>
+          <div id="finalAnswer" class="final-answer"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─────────────── 5. HISTORY ─────────────── -->
+    <section id="tab-history" class="tab-panel" role="tabpanel" hidden>
+      <div class="history-card">
+        <div class="history-header">
+          <h2 class="section-title">Calculation History</h2>
+          <div class="history-actions">
+            <button class="action-btn" id="exportCsvBtn" title="Export history as CSV">⬇ Export CSV</button>
+            <button class="action-btn danger" id="clearHistoryBtn" title="Clear all history">✕ Clear All</button>
+          </div>
+        </div>
+
+        <div id="historyEmpty" class="empty-state">
+          <span class="empty-icon">◷</span>
+          <p>No calculations yet.<br />Start computing to see your history here.</p>
+        </div>
+
+        <ul id="historyList" class="history-list"></ul>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ═══════════════════════  ABOUT MODAL  ══════════════════════════ -->
+  <div id="aboutModal" class="modal-overlay" hidden role="dialog" aria-modal="true" aria-labelledby="aboutTitle">
+    <div class="modal-box">
+      <button class="modal-close" id="closeAbout" aria-label="Close">✕</button>
+      <h2 id="aboutTitle" class="modal-title">⚙ EngCalc Pro</h2>
+      <p class="modal-subtitle">Engineering Calculator Suite · v1.0.0</p>
+
+      <div class="about-grid">
+        <div class="about-item">
+          <span class="about-icon">⊞</span>
+          <div><strong>Basic Calculator</strong><br/>Standard arithmetic with keyboard support</div>
+        </div>
+        <div class="about-item">
+          <span class="about-icon">∫</span>
+          <div><strong>Scientific Mode</strong><br/>Trig, log, factorial, π and e constants</div>
+        </div>
+        <div class="about-item">
+          <span class="about-icon">⇌</span>
+          <div><strong>Unit Converter</strong><br/>6 categories, 20+ engineering units</div>
+        </div>
+        <div class="about-item">
+          <span class="about-icon">χ</span>
+          <div><strong>Equation Solver</strong><br/>Linear and quadratic with step-by-step solutions</div>
+        </div>
+        <div class="about-item">
+          <span class="about-icon">◷</span>
+          <div><strong>History Tracking</strong><br/>Persistent via backend API + localStorage fallback</div>
+        </div>
+        <div class="about-item">
+          <span class="about-icon">☁</span>
+          <div><strong>REST API</strong><br/>Node.js + Express backend for history management</div>
+        </div>
+      </div>
+
+      <div class="tech-stack">
+        <span class="tech-tag">HTML5</span>
+        <span class="tech-tag">CSS3</span>
+        <span class="tech-tag">JavaScript ES6+</span>
+        <span class="tech-tag">Node.js</span>
+        <span class="tech-tag">Express.js</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════  TOAST  ════════════════════════════════ -->
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <!-- ═══════════════════════  FOOTER  ═══════════════════════════════ -->
+  <footer class="app-footer">
+    <span>EngCalc Pro &nbsp;·&nbsp; Built by <strong>Your Name</strong></span>
+    <span class="footer-sep">|</span>
+    <span>Node.js + Express + Vanilla JS</span>
+    <span class="footer-sep">|</span>
+    <a href="https://github.com/yourusername/engcalc-pro" target="_blank" rel="noopener" class="footer-link">GitHub ↗</a>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
