@@ -90,25 +90,6 @@ Through this project I learned:
 npm install
 npm start
 
-
-
-
-  
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ##  License
 
 MIT © [Ananya Trivedi](https://github.com/ananyatrivedi18)
