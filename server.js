@@ -1,6 +1,6 @@
 /**
  * server.js — Express backend for Engineering Calculator
- * Handles calculation history: save, fetch, clear
+
  */
 
 const express = require("express");
@@ -10,23 +10,22 @@ const path = require("path");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// ── Middleware ──────────────────────────────────────────────────────────────
+// ── Middleware 
 app.use(cors());
 app.use(express.json());
 
-// Serve frontend files from the /public folder
+// Serve frontend files 
 app.use(express.static(path.join(__dirname, "public")));
 
-// ── In-memory history store (resets on server restart) ──────────────────────
-// In production you'd swap this for a real database (SQLite, MongoDB, etc.)
+
 let calculationHistory = [];
 let nextId = 1;
 
-// ── API Routes ───────────────────────────────────────────────────────────────
+// ── API Routes 
 
 /**
- * GET /api/history
- * Returns all saved calculation history entries, newest first
+ 
+ * Returns all saved calculation history entries
  */
 app.get("/api/history", (req, res) => {
   const sorted = [...calculationHistory].reverse();
@@ -35,8 +34,7 @@ app.get("/api/history", (req, res) => {
 
 /**
  * POST /api/history
- * Saves a new calculation entry
- * Body: { expression: string, result: string, mode: string }
+
  */
 app.post("/api/history", (req, res) => {
   const { expression, result, mode } = req.body;
@@ -56,7 +54,7 @@ app.post("/api/history", (req, res) => {
 
   calculationHistory.push(entry);
 
-  // Keep only the last 200 entries in memory
+  
   if (calculationHistory.length > 200) {
     calculationHistory = calculationHistory.slice(-200);
   }
@@ -65,7 +63,7 @@ app.post("/api/history", (req, res) => {
 });
 
 /**
- * DELETE /api/history
+
  * Clears all history
  */
 app.delete("/api/history", (req, res) => {
@@ -89,20 +87,17 @@ app.delete("/api/history/:id", (req, res) => {
   res.json({ success: true, message: "Entry deleted" });
 });
 
-/**
- * GET /api/health
- * Simple health-check endpoint
- */
+
 app.get("/api/health", (req, res) => {
   res.json({ success: true, status: "Server is running", uptime: process.uptime() });
 });
 
-// ── Catch-all: serve index.html for any non-API route ────────────────────────
+// Catch-all
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
-// ── Start Server ─────────────────────────────────────────────────────────────
+// Start Server 
 app.listen(PORT, () => {
   console.log(`\n🔧 Engineering Calculator Server`);
   console.log(`   Running at: http://localhost:${PORT}`);
