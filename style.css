@@ -1,10 +1,7 @@
-/* ═══════════════════════════════════════════════════════════════
-   EngCalc Pro — style.css
-   Aesthetic: Industrial Technical — dark steel + amber accent
-   Fonts: Syne (headings) · DM Mono (display/numbers)
-   ═══════════════════════════════════════════════════════════════ */
+/*
+   EngCalc Pro — style.css */
 
-/* ── CSS Variables (themes) ───────────────────────────────────── */
+/* CSS Variables  */
 :root {
   --font-head: 'Syne', sans-serif;
   --font-mono: 'DM Mono', monospace;
@@ -73,7 +70,7 @@
   --success:      #2a9c50;
 }
 
-/* ── Reset + Base ─────────────────────────────────────────────── */
+/* Reset + Base  */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 html { font-size: 16px; scroll-behavior: smooth; }
@@ -88,7 +85,7 @@ body {
   transition: background var(--transition), color var(--transition);
 }
 
-/* ── Header ───────────────────────────────────────────────────── */
+/* Header  */
 .app-header {
   display: flex;
   align-items: center;
@@ -160,7 +157,7 @@ body {
   background: var(--accent-glow);
 }
 
-/* ── Tab Nav ──────────────────────────────────────────────────── */
+/* Tab Nav  */
 .tab-nav {
   display: flex;
   background: var(--bg-surface);
@@ -207,7 +204,7 @@ body {
   opacity: 0.8;
 }
 
-/* ── Main Layout ──────────────────────────────────────────────── */
+/* Main Layout */
 .app-main {
   flex: 1;
   display: flex;
@@ -228,7 +225,7 @@ body {
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* ── Calculator Card (shared) ─────────────────────────────────── */
+/* Calculator Card  */
 .calc-card,
 .converter-card,
 .solver-card,
@@ -240,7 +237,7 @@ body {
   box-shadow: var(--shadow-card);
 }
 
-/* ── Display Area ─────────────────────────────────────────────── */
+/* Display Area  */
 .display-area {
   background: var(--bg-input);
   padding: 20px 20px 14px;
@@ -306,7 +303,7 @@ body {
   color: var(--accent);
 }
 
-/* ── Sci toggle (DEG/RAD) ─────────────────────────────────────── */
+/* Sci toggle  */
 .sci-toggle-row {
   display: flex;
   align-items: center;
@@ -339,7 +336,7 @@ body {
   color: var(--key-eq-text);
 }
 
-/* ── Keypad ───────────────────────────────────────────────────── */
+/* Keypad  */
 .keypad {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -400,7 +397,7 @@ body {
 .sci-keypad .key-op  { height: 52px; }
 .sci-keypad .key-eq  { height: 52px; }
 
-/* ── Converter ────────────────────────────────────────────────── */
+/* Converter  */
 .converter-card { padding: 24px; }
 
 .section-title {
@@ -485,7 +482,7 @@ body {
   flex: 1;
 }
 
-/* ── Solver ───────────────────────────────────────────────────── */
+/* Solver */
 .solver-card { padding: 24px; }
 
 .solver-type-row {
@@ -608,7 +605,7 @@ body {
   text-align: center;
 }
 
-/* ── History ──────────────────────────────────────────────────── */
+/* History */
 .history-card { padding: 24px; }
 
 .history-header {
@@ -753,7 +750,7 @@ body {
 
 .history-delete-btn:hover { color: var(--danger); }
 
-/* ── Modal ────────────────────────────────────────────────────── */
+/* Modal  */
 .modal-overlay {
   position: fixed;
   inset: 0;
@@ -864,7 +861,7 @@ body {
   letter-spacing: 0.04em;
 }
 
-/* ── Toast ────────────────────────────────────────────────────── */
+/* Toast */
 .toast {
   position: fixed;
   bottom: 28px;
@@ -889,7 +886,7 @@ body {
   transform: translateX(-50%) translateY(0);
 }
 
-/* ── Footer ───────────────────────────────────────────────────── */
+/* Footer  */
 .app-footer {
   text-align: center;
   padding: 14px 16px;
@@ -913,7 +910,7 @@ body {
 }
 .footer-link:hover { opacity: 0.75; }
 
-/* ── Responsive ───────────────────────────────────────────────── */
+/* Responsive  */
 @media (max-width: 540px) {
   .app-main { padding: 16px 10px 32px; }
   .tab-label { display: none; }
