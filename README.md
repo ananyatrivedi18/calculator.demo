@@ -5,24 +5,51 @@
 
 While building this project, I learned how frontend and backend applications communicate through APIs, how to manage calculation history, and how to create a user responsive user interface that works across different screen sizes.
 
-
-![Screenshot](https://img.shields.io/badge/status-production--ready-brightgreen)
-![Node](https://img.shields.io/badge/Node.js-18%2B-green)
-![Express](https://img.shields.io/badge/Express-4.x-blue)
-![License](https://img.shields.io/badge/license-MIT-lightgrey)
-
 ---
 
-## 📸 Features
+# Features
+## Basic Calculator
+- Addition, subtraction, multiplication, and division
+- Decimal calculations
+- Keyboard support
+- Copy result option
 
-| Module | Capabilities |
-|--------|-------------|
-| **Basic Calculator** | +, −, ×, ÷, decimal, backspace, clear, keyboard input, copy result |
-| **Scientific Calculator** | sin/cos/tan, log/ln, √, xʸ, n!, π, e; DEG/RAD toggle |
-| **Unit Converter** | Length, Mass, Temperature, Pressure, Energy, Power (20+ units) |
-| **Equation Solver** | Linear (ax+b=c) and Quadratic (ax²+bx+c=0) with step-by-step solutions |
-| **History** | Saved via Express REST API + localStorage fallback; CSV export |
-| **UI/UX** | Dark/light mode, responsive layout, animations, copy buttons, toast notifications |
+           
+## Scientific Calculator
+- Trigonometric functions (sin, cos, tan)
+- Logarithmic functions
+- Square root calculations
+- Powers and factorials
+- Degree/Radian mode convertor
+
+
+## Unit Converter
+Conversion between:
+- Length
+- Mass
+- Temperature
+- Pressure
+- Energy
+- Power
+
+### Equation Solver
+- Linear equations
+- Quadratic equations
+- Step-by-step solutions
+
+### Calculation History
+- Stores previous calculations
+- History can be cleared when needed
+- CSV export support
+
+## User Interface
+- Dark and Light themes
+- Responsive design for mobile and desktop
+- Toast notifications and animations
+
+  
+  
+
 
 ---
 
