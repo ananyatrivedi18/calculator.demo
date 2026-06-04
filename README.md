@@ -1,4 +1,4 @@
-# ⚙ EngCalc Pro — Engineering Calculator Suite
+# EngCalc Pro 
 
 > A polished, full-stack engineering calculator web application built with Node.js, Express, and Vanilla JavaScript. Designed as a portfolio/resume project for engineering students.
 
@@ -151,35 +151,11 @@ Toggle between **dark mode** (industrial steel + amber) and **light mode** by cl
 - [ ] LaTeX equation rendering
 - [ ] Multi-language/locale support
 
----
 
-## 📋 Resume Bullet Points
 
-Copy and adapt these for your CV/resume:
+##  License
 
-```
-• Engineered a full-stack Engineering Calculator SPA using Node.js + Express REST API and 
-  Vanilla JavaScript, featuring scientific functions, a 20+ unit converter, step-by-step 
-  equation solver, and persistent calculation history with localStorage fallback.
-
-• Designed and implemented a responsive, accessible UI with dark/light theme switching, 
-  CSS custom properties for design-token theming, keyboard navigation, and smooth 
-  micro-interaction animations — achieving full mobile/tablet/desktop compatibility.
-
-• Built a RESTful Express.js backend (GET/POST/DELETE) for CRUD operations on calculation 
-  history, with input validation, structured JSON responses, and static file serving — 
-  following MVC separation of concerns.
-
-• Implemented robust error handling throughout: safe expression evaluation (no eval()), 
-  complex-number detection in quadratic solutions, unit conversion edge cases, and graceful 
-  API fallback to localStorage when the server is unavailable.
-```
-
----
-
-## 📜 License
-
-MIT © [Your Name](https://github.com/yourusername)
+MIT © [Ananya Trivedi](https://github.com/ananyatrivedi18)
 
 ---
 
@@ -187,9 +163,7 @@ MIT © [Your Name](https://github.com/yourusername)
 
 > Full-stack Engineering Calculator built with Node.js + Express + Vanilla JS. Features scientific functions, unit converter (20+ units), linear/quadratic equation solver with step-by-step solutions, dark/light mode, and calculation history with CSV export.
 
-**Suggested GitHub topics:**
-`calculator` `engineering` `nodejs` `expressjs` `javascript` `student-project` `portfolio` `unit-converter` `equation-solver` `full-stack`
 
 ---
 
-*Built with ❤ by [Your Name] — Engineering Student Portfolio Project*
+*Built by [Ananya Trivedi] — Engineering Portfolio Project
