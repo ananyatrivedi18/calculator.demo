@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>EngCalc Pro — Engineering Calculator</title>
 
-  <!-- Google Fonts: DM Mono + Syne -->
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet" />
@@ -14,7 +14,7 @@
 </head>
 <body>
 
-  <!-- ═══════════════════════════  HEADER  ═══════════════════════════ -->
+  <!--  HEADER  -->
   <header class="app-header">
     <div class="header-left">
       <span class="logo-icon">⚙</span>
@@ -33,7 +33,7 @@
     </div>
   </header>
 
-  <!-- ═══════════════════════════  NAV TABS  ════════════════════════ -->
+  <!--  NAV TABS   -->
   <nav class="tab-nav" role="tablist" aria-label="Calculator modes">
     <button class="tab-btn active" data-tab="basic"      role="tab" aria-selected="true">
       <span class="tab-icon">⊞</span><span class="tab-label">Basic</span>
@@ -52,10 +52,10 @@
     </button>
   </nav>
 
-  <!-- ═══════════════════════════  MAIN CONTENT  ═══════════════════ -->
+  <!--  MAIN CONTENT   -->
   <main class="app-main">
 
-    <!-- ─────────────── 1. BASIC CALCULATOR ─────────────── -->
+    <!--  1. BASIC CALCULATOR -->
     <section id="tab-basic" class="tab-panel active" role="tabpanel">
       <div class="calc-card">
         <div class="display-area">
@@ -94,7 +94,7 @@
       </div>
     </section>
 
-    <!-- ─────────────── 2. SCIENTIFIC CALCULATOR ─────────────── -->
+    <!-- 2. SCIENTIFIC CALCULATOR -->
     <section id="tab-scientific" class="tab-panel" role="tabpanel" hidden>
       <div class="calc-card">
         <div class="display-area">
@@ -150,7 +150,7 @@
       </div>
     </section>
 
-    <!-- ─────────────── 3. UNIT CONVERTER ─────────────── -->
+    <!--  3. UNIT CONVERTER -->
     <section id="tab-converter" class="tab-panel" role="tabpanel" hidden>
       <div class="converter-card">
         <h2 class="section-title">Unit Converter</h2>
@@ -188,7 +188,7 @@
       </div>
     </section>
 
-    <!-- ─────────────── 4. EQUATION SOLVER ─────────────── -->
+    <!--  4. EQUATION SOLVER -->
     <section id="tab-solver" class="tab-panel" role="tabpanel" hidden>
       <div class="solver-card">
         <h2 class="section-title">Equation Solver</h2>
@@ -246,7 +246,7 @@
       </div>
     </section>
 
-    <!-- ─────────────── 5. HISTORY ─────────────── -->
+    <!--5. HISTORY  -->
     <section id="tab-history" class="tab-panel" role="tabpanel" hidden>
       <div class="history-card">
         <div class="history-header">
@@ -268,7 +268,7 @@
 
   </main>
 
-  <!-- ═══════════════════════  ABOUT MODAL  ══════════════════════════ -->
+  <!--  ABOUT MODAL-->
   <div id="aboutModal" class="modal-overlay" hidden role="dialog" aria-modal="true" aria-labelledby="aboutTitle">
     <div class="modal-box">
       <button class="modal-close" id="closeAbout" aria-label="Close">✕</button>
@@ -312,10 +312,10 @@
     </div>
   </div>
 
-  <!-- ═══════════════════════  TOAST  ════════════════════════════════ -->
+  <!-- TOAST -->
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
-  <!-- ═══════════════════════  FOOTER  ═══════════════════════════════ -->
+  <!--  FOOTER  -->
   <footer class="app-footer">
     <span>EngCalc Pro &nbsp;·&nbsp; Built by <strong>Your Name</strong></span>
     <span class="footer-sep">|</span>
