@@ -1,16 +1,14 @@
 /**
  * script.js — EngCalc Pro Frontend Logic
- * Covers: Basic Calc · Scientific Calc · Unit Converter · Equation Solver · History
- * Uses: Fetch API to backend, localStorage fallback for history
- */
+  */
 
 "use strict";
 
-/* ════════════════════════════════════════════════════════════════
-   0.  UTILITY HELPERS
-   ════════════════════════════════════════════════════════════════ */
+/*
+   1.  UTILITY HELPERS
+   */
 
-/** Show a brief toast notification */
+
 function showToast(msg, duration = 2200) {
   const el = document.getElementById("toast");
   el.textContent = msg;
@@ -19,7 +17,7 @@ function showToast(msg, duration = 2200) {
   showToast._timer = setTimeout(() => el.classList.remove("show"), duration);
 }
 
-/** Copy text to clipboard, then show toast */
+
 async function copyToClipboard(text) {
   try {
     await navigator.clipboard.writeText(text);
@@ -29,9 +27,9 @@ async function copyToClipboard(text) {
   }
 }
 
-/* ════════════════════════════════════════════════════════════════
+/* 
    1.  THEME TOGGLE
-   ════════════════════════════════════════════════════════════════ */
+    */
 
 const THEME_KEY = "engcalc_theme";
 const themeToggleBtn = document.getElementById("themeToggle");
@@ -43,7 +41,7 @@ function applyTheme(theme) {
   localStorage.setItem(THEME_KEY, theme);
 }
 
-// Load saved theme (default: dark)
+// Load saved theme 
 applyTheme(localStorage.getItem(THEME_KEY) || "dark");
 
 themeToggleBtn.addEventListener("click", () => {
@@ -51,9 +49,9 @@ themeToggleBtn.addEventListener("click", () => {
   applyTheme(current === "dark" ? "light" : "dark");
 });
 
-/* ════════════════════════════════════════════════════════════════
+/* 
    2.  TAB NAVIGATION
-   ════════════════════════════════════════════════════════════════ */
+    */
 
 const tabBtns   = document.querySelectorAll(".tab-btn");
 const tabPanels = document.querySelectorAll(".tab-panel");
@@ -72,7 +70,7 @@ function switchTab(targetId) {
     else       panel.classList.remove("active");
   });
 
-  // Refresh history when that tab is activated
+  
   if (targetId === "history") loadHistory();
 }
 
@@ -80,9 +78,9 @@ tabBtns.forEach(btn =>
   btn.addEventListener("click", () => switchTab(btn.dataset.tab))
 );
 
-/* ════════════════════════════════════════════════════════════════
+/* 
    3.  BASIC CALCULATOR
-   ════════════════════════════════════════════════════════════════ */
+   */
 
 const basicDisplay    = document.getElementById("basicDisplay");
 const basicExpression = document.getElementById("basicExpression");
@@ -97,22 +95,22 @@ let basicState = {
   justCalced: false,    // whether last action was "="
 };
 
-/** Evaluate expression: replace display symbols with JS operators */
+/** Evaluate expression */
 function evalBasicExpression(exprStr) {
-  // Replace typographic operators with JS equivalents
+  
   const safe = exprStr
     .replace(/÷/g, "/")
     .replace(/×/g, "*")
     .replace(/−/g, "-");
 
-  // Safety: only allow numbers, operators, dots, and parentheses
+  
   if (!/^[\d+\-*/.()\s]+$/.test(safe)) return "Error";
 
   try {
-    // eslint-disable-next-line no-new-func
+    
     const result = Function(`"use strict"; return (${safe})`)();
     if (!isFinite(result)) return "Error";
-    // Round to 12 sig figures to avoid floating point drift
+    
     return parseFloat(result.toPrecision(12)).toString();
   } catch {
     return "Error";
@@ -216,7 +214,7 @@ document.getElementById("tab-basic").addEventListener("click", e => {
 
 copyBasicBtn.addEventListener("click", () => copyToClipboard(basicState.current));
 
-// Keyboard support (only active on basic/sci tabs)
+// Keyboard support 
 document.addEventListener("keydown", e => {
   const activeTab = document.querySelector(".tab-btn.active")?.dataset.tab;
   if (activeTab !== "basic") return;
@@ -232,9 +230,9 @@ document.addEventListener("keydown", e => {
   if (e.key === "Escape") basicClear();
 });
 
-/* ════════════════════════════════════════════════════════════════
+/*
    4.  SCIENTIFIC CALCULATOR
-   ════════════════════════════════════════════════════════════════ */
+   */
 
 const sciDisplay    = document.getElementById("sciDisplay");
 const sciExpression = document.getElementById("sciExpression");
@@ -336,7 +334,7 @@ function applySciFn(fn) {
       case "ln":   result = Math.log(val);   break;
       case "sqrt": result = Math.sqrt(val);  break;
       case "pow":
-        // Ask user for exponent (simple prompt for now)
+        // Ask user  exponent 
         const exp = parseFloat(prompt("Enter exponent:", "2"));
         if (isNaN(exp)) return;
         result = Math.pow(val, exp);
@@ -398,17 +396,11 @@ document.getElementById("tab-scientific").addEventListener("click", e => {
 
 copySciBtn.addEventListener("click", () => copyToClipboard(sciState.current));
 
-/* ════════════════════════════════════════════════════════════════
+/* 
    5.  UNIT CONVERTER
-   ════════════════════════════════════════════════════════════════ */
+  */
 
-/**
- * Conversion definitions.
- * Strategy: all values convert TO a "base" unit, then FROM base to target.
- * toBase(v): convert v → base unit
- * fromBase(v): convert base unit → target
- * Temperature is a special case (offset, not ratio).
- */
+
 const UNITS = {
   length: {
     base: "meter",
@@ -531,9 +523,9 @@ document.getElementById("copyConv").addEventListener("click", () => {
 // Init with default category
 populateConvUnits(convCategoryEl.value);
 
-/* ════════════════════════════════════════════════════════════════
+/* 
    6.  EQUATION SOLVER
-   ════════════════════════════════════════════════════════════════ */
+ */
 
 const linearBtn   = document.getElementById("linearBtn");
 const quadBtn     = document.getElementById("quadBtn");
@@ -706,14 +698,14 @@ solveBtn.addEventListener("click", () => {
 updateLinearPreview();
 updateQuadPreview();
 
-/* ════════════════════════════════════════════════════════════════
-   7.  HISTORY (API + localStorage fallback)
-   ════════════════════════════════════════════════════════════════ */
+/* 
+   7.  HISTORY 
+ */
 
 const HISTORY_LS_KEY = "engcalc_history";
 const API_BASE = "/api";
 
-/** Fetch history from backend; fall back to localStorage on failure */
+
 async function loadHistory() {
   let entries = [];
   try {
@@ -810,7 +802,7 @@ function renderHistoryList(entries) {
   );
 }
 
-/** Format ISO timestamp to human-readable */
+
 function formatTimestamp(iso) {
   if (!iso) return "";
   try {
@@ -822,7 +814,7 @@ function formatTimestamp(iso) {
   } catch { return ""; }
 }
 
-/** Simple HTML escape to prevent XSS */
+
 function escapeHtml(str) {
   return String(str)
     .replace(/&/g, "&amp;")
@@ -831,7 +823,7 @@ function escapeHtml(str) {
     .replace(/"/g, "&quot;");
 }
 
-// Clear all history
+
 document.getElementById("clearHistoryBtn").addEventListener("click", async () => {
   if (!confirm("Clear all calculation history?")) return;
 
@@ -844,7 +836,7 @@ document.getElementById("clearHistoryBtn").addEventListener("click", async () =>
   showToast("History cleared");
 });
 
-// Export history as CSV
+
 document.getElementById("exportCsvBtn").addEventListener("click", () => {
   try {
     const raw = localStorage.getItem(HISTORY_LS_KEY);
@@ -869,9 +861,9 @@ document.getElementById("exportCsvBtn").addEventListener("click", () => {
   }
 });
 
-/* ════════════════════════════════════════════════════════════════
+/* 
    8.  ABOUT MODAL
-   ════════════════════════════════════════════════════════════════ */
+*/
 
 const aboutModal   = document.getElementById("aboutModal");
 const aboutBtn     = document.getElementById("aboutBtn");
@@ -883,14 +875,14 @@ aboutModal.addEventListener("click", e => {
   if (e.target === aboutModal) aboutModal.hidden = true;
 });
 
-// Close modal on Escape key
+
 document.addEventListener("keydown", e => {
   if (e.key === "Escape" && !aboutModal.hidden) aboutModal.hidden = true;
 });
 
-/* ════════════════════════════════════════════════════════════════
+/* 
    9.  INIT
-   ════════════════════════════════════════════════════════════════ */
+   */
 
 // Initialize displays
 updateBasicDisplay();
